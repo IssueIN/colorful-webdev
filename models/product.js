@@ -54,6 +54,10 @@ const productSchema = new mongoose.Schema({
     type: Buffer
     //required: true
   },
+  dataSheeetType: {
+    type: String,
+    required: true
+  },
   publishedAt: {
     type: Date,
     required: true,
@@ -63,6 +67,18 @@ const productSchema = new mongoose.Schema({
     type: String,
     enum: ['cat1', 'cat2', 'cat3', 'cat4','cat5','cat6'],
     required: true
+  }
+})
+
+productSchema.virtual('imagePath').get(function() {
+  if (this.image != null && this.imageType != null) {
+    return `data:${this.imageType};charset=utf-8;base64,${this.image.toString('base64')}`
+  }
+})
+
+productSchema.virtual('dataSheetPath').get(function() {
+  if (this.dataSheet != null && this.dataSheetType != null) {
+    return `data:${this.dataSheetType};charset=utf-8;base64,${this.dataSheet.toString('base64')}`
   }
 })
 

@@ -1,0 +1,81 @@
+<div>
+  <lable>Part Number</lable>
+  <input type="text" name="partNumber" value = "<%= product.partNumber %>">
+</div>
+
+<div>
+  <lable>Image</lable>
+  <input type="file" name="image" class="filepond"/>
+</div>
+
+<div>
+  <label>Manufacturer</label>
+  <select name="manufacturer">
+  <% manufacturers.forEach(manufacturer => { %>
+    <% if (manufacturer.id === product.manufacturer) {%>
+        <option selected label="<%= manufacturer.name %>" value="<%= manufacturer.id %>">
+    <% } else { %>
+        <option label="<%= manufacturer.name %>" value="<%= manufacturer.id %>">
+    <% } %>
+  <% }) %> 
+  </select>
+</div>
+
+<div>
+  <lable>Description</lable>
+  <textarea name="description">
+    <%= product.description %>
+  </textarea>
+</div>
+
+<div>
+  <lable>Packaging</lable>
+  <input type="text" name="packaging" value = "<%= product.packaging %>">
+</div>
+
+<div>
+  <label>Package Case</label>
+  <select name="packageCase">
+  <% packageCaseOptions.forEach(packageCase => { %>
+    <% if (packageCase === product.packageCase) {%>
+        <option selected label="<%= packageCase %>" value="<%= packageCase %>">
+    <% } else { %>
+        <option label="<%= packageCase %>" value="<%= packageCase %>">
+    <% } %>
+  <% }) %> 
+  </select>
+</div>
+
+<div>
+  <lable>In Stock Number</lable>
+  <input type="number" name="stock" value = "<%= product.stock %>">
+</div>
+
+<div>
+  <label>Category</label>
+  <select name="category">
+  <% categoryOptions.forEach(category => { %>
+    <% if (category === product.category) {%>
+        <option selected label="<%= category %>" value="<%= category %>">
+    <% } else { %>
+        <option label="<%= category %>" value="<%= category %>">
+    <% } %>
+  <% }) %> 
+  </select>
+</div>
+
+<div id="pricingTable">
+  <label>Pricing</label>
+  <div class="pricingRow">
+    <input type="number" placeholder="Quantity" name="qty[]" />
+    <input type="number" placeholder="Price" name="price[]" />
+    <button type="button" onclick="removeRow(this)">Remove</button>
+  </div>
+</div>
+<button type="button" onclick="addRow()">Add Another Price Tier</button>
+
+
+<div>
+  <lable>Data Sheet</lable>
+  <input type="file" name="dataSheet" class="filepond"/>
+</div>
