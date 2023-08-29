@@ -5,7 +5,7 @@ const manufacturerSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  logo: {
+  logoImage: {
     type: Buffer,
     required: true
   },
