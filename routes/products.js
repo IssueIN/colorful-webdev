@@ -43,8 +43,8 @@ router.get('/new', async (req, res) => {
 
 //Create Products Route
 router.post('/', async (req, res) =>{
-  const pricingArray = req.body.qty.map((q, index) => {
-    return {qty: q, price: req.body.price[index]}
+  const pricingArray = req.body['qty[]'].map((q, index) => {
+    return {qty: q, price: req.body['price[]'][index]}
   })
 
   const product = new Product({
@@ -73,9 +73,13 @@ router.post('/', async (req, res) =>{
 async function renderNewPage(res, product, hasError = false) {
   try {
     const manufacturers = await Manufacturers.find({})
+    const packageCaseOptions = await Product.schema.path('packageCase').enumValues
+    const categoryOptions = await Product.schema.path('category').enumValues
     const params = {
       manufacturers: manufacturers,
-      product: product
+      product: product,
+      packageCaseOptions: packageCaseOptions,
+      categoryOptions: categoryOptions
     }
     if (hasError) {
       params.errorMessage = 'Error Creating Product'
@@ -86,16 +90,27 @@ async function renderNewPage(res, product, hasError = false) {
   }
 }
 
+// function saveFile(product, fileEncoded, fileTypes, fieldName) {
+//   if (fileEncoded == null) return;
+//   const file = JSON.parse(fileEncoded);
+
+//   if (file !== null && fileTypes.includes(file.type)) {
+//     product[fieldName] = new Buffer.from(file.data, 'base64');
+    
+//     const fieldType = fieldName + 'Type';
+//     product[fieldType] = file.type;
+//   }
+// }
+
 function saveFile(product, fileEncoded, fileTypes, fieldName) {
   if (fileEncoded == null) return;
   const file = JSON.parse(fileEncoded);
-
   if (file !== null && fileTypes.includes(file.type)) {
-    product[fieldName] = new Buffer.from(file.data, 'base64');
-    
-    const fieldType = fieldName + 'Type';
-    product[fieldType] = file.type;
+      product[fieldName] = new Buffer.from(file.data, 'base64');
+      const fieldType = fieldName + 'Type';
+       product[fieldType] = file.type;
   }
 }
+
 
 module.exports = router

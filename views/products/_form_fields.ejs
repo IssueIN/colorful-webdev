@@ -1,10 +1,10 @@
 <div>
-  <lable>Part Number</lable>
+  <label>Part Number</label>
   <input type="text" name="partNumber" value = "<%= product.partNumber %>">
 </div>
 
 <div>
-  <lable>Image</lable>
+  <label>Image</label>
   <input type="file" name="image" class="filepond"/>
 </div>
 
@@ -22,14 +22,14 @@
 </div>
 
 <div>
-  <lable>Description</lable>
+  <label>Description</label>
   <textarea name="description">
     <%= product.description %>
   </textarea>
 </div>
 
 <div>
-  <lable>Packaging</lable>
+  <label>Packaging</label>
   <input type="text" name="packaging" value = "<%= product.packaging %>">
 </div>
 
@@ -47,7 +47,7 @@
 </div>
 
 <div>
-  <lable>In Stock Number</lable>
+  <label>In Stock Number</label>
   <input type="number" name="stock" value = "<%= product.stock %>">
 </div>
 
@@ -65,7 +65,7 @@
 </div>
 
 <div id="pricingTable">
-  <label>Pricing</label>
+  <label>Pricing (In cents)</label>
   <div class="pricingRow">
     <input type="number" placeholder="Quantity" name="qty[]" />
     <input type="number" placeholder="Price" name="price[]" />
@@ -76,7 +76,7 @@
 
 
 <div>
-  <lable>Data Sheet</lable>
+  <label>Data Sheet</label>
   <input type="file" name="dataSheet" class="filepond"/>
-</div>
+</div> 
 

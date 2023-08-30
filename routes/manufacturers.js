@@ -7,11 +7,12 @@ const imageMimeTypes = ['image/jpeg','image/png']
 //All Manufacturer Route
 router.get('/', async (req, res) => {
   let searchOptions = {}
-  if(req.query != null && req.query !== '') {
+  if(req.query.name != null && req.query.name !== '') {
     searchOptions.name = new RegExp(req.query.name, 'i')
   }
   try {
     const manufacturers = await Manufacturer.find(searchOptions)
+    console.log(searchOptions)
     res.render('manufacturers/index', {
       manufacturers: manufacturers,
       searchOptions: req.query
@@ -38,7 +39,7 @@ router.post('/', async (req, res) => {
   try {
     const newManufacturer = await manufacturer.save()
     //res.redirect(`/manufacturers/${newManufacturer.id}`)
-    res.render('manufacturers/index')
+    res.redirect('/manufacturers')
   } catch {
     res.render('manufacturers/new', {
       manufacturer: manufacturer,
@@ -50,9 +51,9 @@ router.post('/', async (req, res) => {
 function saveLogo(manufacturer, logoEncoded) {
   if (logoEncoded == null || logoEncoded == '') return
   const logo = JSON.parse(logoEncoded)
-  if (logo !== null && imageMimeTypes,includes(logo.type)) {
+  if (logo !== null && imageMimeTypes.includes(logo.type)) {
     manufacturer.logoImage = new Buffer.from(logo.data, 'base64')
-    book.logoImageType = logo.type
+    manufacturer.logoImageType = logo.type
   }
 }
 

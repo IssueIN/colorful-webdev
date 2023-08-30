@@ -54,9 +54,9 @@ const productSchema = new mongoose.Schema({
     type: Buffer
     //required: true
   },
-  dataSheeetType: {
+  dataSheetType: {
     type: String,
-    required: true
+    //required: true
   },
   publishedAt: {
     type: Date,
