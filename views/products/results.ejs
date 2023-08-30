@@ -1,0 +1,13 @@
+<form action="/products/results" method="GET">
+  <div>
+    <input type="text" name="search" value="<%= searchOptions.search %>" placeholder="Enter part#">
+  </div>
+  <button type="submit">Search</button>
+</form>
+
+<h2>Search Results</h2>
+<div>
+  <% searchResults.forEach(product => { %>
+    <div><%= product.partNumber %></div>
+  <% }) %>
+</div>

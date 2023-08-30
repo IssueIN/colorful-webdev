@@ -70,6 +70,32 @@ router.post('/', async (req, res) =>{
   }
 })
 
+//Search Results Route
+router.get('/results', async (req, res) => {
+  let searchResults = []
+  let query = Product.find()
+  if (req.query.search != null && req.query.search !== '') {
+    query = query.regex('partNumber', new RegExp(req.query.search, 'i'))
+  }
+  try {
+    searchResults = await query.exec()
+    if (searchResults.length > 0) {
+      res.render('products/results', {
+        searchOptions: req.query,
+        searchResults: searchResults
+      })
+    } else {
+      res.render('products/results', {
+        searchOptions: req.query,
+        searchResults: searchResults,
+        errorMessage: "can't find items"
+      })
+    }
+  } catch {
+    res.redirect('/')
+  }
+})
+
 async function renderNewPage(res, product, hasError = false) {
   try {
     const manufacturers = await Manufacturers.find({})
@@ -111,6 +137,27 @@ function saveFile(product, fileEncoded, fileTypes, fieldName) {
        product[fieldType] = file.type;
   }
 }
+
+// async function getQuery(searchText) {
+//   let query = {};
+//   if (searchText != null && searchText !== '') {
+//     let manufacturerIds = await Manufacturer.find({ name: new RegExp(searchText, 'i') }).select('_id');
+//     manufacturerIds = manufacturerIds.map(m => m._id);
+//     const regex = new RegExp(searchText, 'i');
+//     query = {
+//       $or: [
+//         { partNumber: regex },
+//         { manufacturer: { $in: manufacturerIds } },
+//         { packaging: regex },
+//         { packageCase: regex },
+//         { description: regex },
+//         { category: regex }
+//       ]
+//     };
+//   }
+//   return query;
+// }
+
 
 
 module.exports = router

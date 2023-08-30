@@ -1,17 +1,23 @@
 const express = require('express')
 const router = express.Router()
 const Product = require('../models/product')
+const Manufacturer = require('../models/manufacturer')
+
 
 router.get('/', async (req, res) => {
-  let products
+  let productsRecent
+  let manufacturers
   try {
-    products = await Product.find().sort({publishedAt: 'desc'}).limit(10).exec()
+    productsRecent = await Product.find().sort({publishedAt: 'desc'}).limit(10).exec()
+    manufacturers = await Manufacturer.find({}).exec()
+     res.render('index',{
+      searchOptions: req.query,
+      productsRecent: productsRecent,
+      manufacturers: manufacturers,
+    })
   } catch {
-    products = []
+    res.send('error entering main page!')
   }
-  res.render('index', {
-    products: products
-  })
 })
 
 module.exports = router
