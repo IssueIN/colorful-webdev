@@ -1,4 +1,35 @@
 <header>
+  <nav class="header-row-top">
+    <div class="logo-container">
+      <a href="/">COLORFUL</a>
+      <div></div>
+    </div>
+    <div class="header-search-container">
+      <form action="/products/results" method="GET">
+        <input type="text" name="search" value="<%= searchOptions.search %>" placeholder="Enter Part#" class="header-search-bar">
+        <button type="submit" class="header-search-btn"><img src="/icons/search-icon-green.png" height="20"></button>
+      </form>
+    </div>
+    <ul class="links-row-container">
+      <li><a href="/about-us">About</a></li>
+      <li><a href="/contact-us">Contact</a></li>
+      <li><a href="/join-us">Join us</a></li>
+    </ul>
+  </nav>
+  <nav class="header-row-bottom">
+    <ul>
+      <li>
+        <a href="/products">All Products&dtrif;</a>
+        <%- include('dropdown', items = categories) %>
+      </li>
+      <li>
+        <a href="/manufacturers">Manufacturers&dtrif;</a>
+        <%- include('dropdown', items = manufacturers) %>
+      </li>
+    </ul>
+    <div class="lang-container"><span>Language</span></div>
+  </nav>
+  <div class="spacebetween"></div>
   <nav>
     <a href="/">Colorful</a>
     <ul>

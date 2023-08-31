@@ -7,6 +7,9 @@ const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 
+const Manufacturer = require('./models/manufacturer')
+const Product = require('./models/product')
+
 const indexRouter = require('./routes/index')
 const manufacturerRouter = require('./routes/manufacturers')
 const productRouter = require('./routes/products')
@@ -24,8 +27,19 @@ const db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
 
+app.use(async (req, res, next) => {
+  try {
+    res.locals.categories = await Product.schema.path('category').enumValues;;
+    res.locals.manufacturers = await Manufacturer.find({}).exec();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.use('/', indexRouter)
 app.use('/manufacturers',manufacturerRouter)
 app.use('/products', productRouter)
+
 
 app.listen(process.env.PORT || 3000)

@@ -27,14 +27,11 @@ router.get('/', async (req, res) => {
 router.get('/new', async (req, res) => {
   try {
     const packageCaseOptions = await Product.schema.path('packageCase').enumValues;
-    const categoryOptions = await Product.schema.path('category').enumValues;
-    const manufacturers = await Manufacturer.find({})
     const product = new Product()
     res.render('products/new', {
-      manufacturers: manufacturers,
       product: product,
       packageCaseOptions: packageCaseOptions,
-      categoryOptions: categoryOptions
+      searchOptions: req.query
     })
   } catch {
     res.redirect('/products')

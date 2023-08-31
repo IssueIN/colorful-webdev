@@ -12,8 +12,7 @@ router.get('/', async (req, res) => {
   }
   try {
     const manufacturers = await Manufacturer.find(searchOptions)
-    console.log(searchOptions)
-    res.render('manufacturers/index', {
+     res.render('manufacturers/index', {
       manufacturers: manufacturers,
       searchOptions: req.query
     })
@@ -25,7 +24,8 @@ router.get('/', async (req, res) => {
 //New Manufacturer Route
 router.get('/new', (req, res) => {
   res.render('manufacturers/new', {
-    manufacturer: new Manufacturer()
+    manufacturer: new Manufacturer(),
+    searchOptions: req.query
   })
 })
 

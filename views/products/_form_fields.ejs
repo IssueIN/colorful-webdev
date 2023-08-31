@@ -54,7 +54,7 @@
 <div>
   <label>Category</label>
   <select name="category">
-  <% categoryOptions.forEach(category => { %>
+  <% categories.forEach(category => { %>
     <% if (category === product.category) {%>
         <option selected label="<%= category %>" value="<%= category %>">
     <% } else { %>

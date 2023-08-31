@@ -1,0 +1,7 @@
+@import 'shared/variables.css';
+@import 'shared/header.css';
+@import 'shared/animations.css';
+
+body {
+  margin: 0;
+}

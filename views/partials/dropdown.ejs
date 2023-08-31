@@ -1,0 +1,9 @@
+<ul class="dropdown">
+  <% items.forEach(item => { %>
+    <% if (item.name) { %>
+      <li><a><%= item.name %></a></li>
+    <% } else { %>
+      <li><a><%= item %></a></li>
+    <% } %>
+  <% }) %>
+</ul>
