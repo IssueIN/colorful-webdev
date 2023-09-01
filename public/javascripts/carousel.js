@@ -38,6 +38,30 @@ const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
   }
 }
 
+const autoSliding = () => {
+  const currentSlide = track.querySelector('.current-slide');
+  const currentInd = indsNav.querySelector('.current-slide');
+  const currentIndex = slides.findIndex(slide => slide === currentSlide);
+  let nextSlide;
+  let nextInd;
+  let nextIndex;
+  if (currentIndex === slides.length - 1) {
+    nextSlide = slides[0];
+    nextInd = inds[0];
+    nextIndex = 0;
+  } else {
+    nextSlide = currentSlide.nextElementSibling;
+    nextInd = currentInd.nextElementSibling;
+    nextIndex = slides.findIndex(slide => slide === nextSlide);
+  }
+
+  moveToSlide(track, currentSlide, nextSlide);
+  updateInds(currentInd, nextInd);
+  hideShowArrows(slides, prevButton, nextButton, nextIndex);
+}
+
+setInterval(autoSliding, 1e4);
+
 nextButton.addEventListener('click', e =>{
   const currentSlide = track.querySelector('.current-slide');
   const nextSlide = currentSlide.nextElementSibling;
@@ -46,7 +70,6 @@ nextButton.addEventListener('click', e =>{
   const nextIndex = slides.findIndex(slide => slide === nextSlide);
 
   moveToSlide(track, currentSlide,nextSlide);
-
   updateInds(currentInd, nextInd);
   hideShowArrows(slides, prevButton, nextButton, nextIndex);
 });
@@ -79,7 +102,6 @@ indsNav.addEventListener('click', e => {
   updateInds(currentInd, targetInd);
   hideShowArrows(slides, prevButton, nextButton, targetIndex);
 })
-
 
 
 
