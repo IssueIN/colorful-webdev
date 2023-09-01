@@ -1,6 +1,7 @@
 @import 'shared/variables.css';
 @import 'shared/header.css';
 @import 'shared/animations.css';
+@import 'shared/carousel.css';
 
 body {
   margin: 0;
