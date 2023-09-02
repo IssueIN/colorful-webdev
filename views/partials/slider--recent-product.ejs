@@ -1,0 +1,14 @@
+<button class="slider__button"></button>
+<div class="slider__track-container">
+  <ul class="slider__track">
+    <% productsRecent.forEach(productRecent => { %>
+      <li class="slide">
+        <div class="slide__product-details-container">
+          <img class="product-tnb" src="/uploads/productImg-placeholder.png" height="64">
+          <%= productRecent.partNumber %>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+</div>
+<button class="slider__button"></button>

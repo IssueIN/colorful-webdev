@@ -1,0 +1,35 @@
+.slider {
+  position: relative;
+  height: 200px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.slide__product-details-container {
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover; */
+}
+
+.slider__track-container {
+  background: var(--color-theme-green);
+  height: 100%;
+  position: relative;
+  /* overflow: hidden; */
+}
+
+.slider__track {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+  height: 100%;
+  transition: transform 250ms ease;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
