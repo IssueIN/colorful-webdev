@@ -60,7 +60,7 @@ const autoSliding = () => {
   hideShowArrows(slides, prevButton, nextButton, nextIndex);
 }
 
-setInterval(autoSliding, 1e4);
+//setInterval(autoSliding, 1e4);
 
 nextButton.addEventListener('click', e =>{
   const currentSlide = track.querySelector('.current-slide');
