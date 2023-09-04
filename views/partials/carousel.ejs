@@ -1,21 +1,17 @@
-<button class="carousel__button carousel__button--left is-hidden">
+<button class="carousel__button carousel__button--left is-hidden <%= buttonStyle %>">
   <img src="/icons/arrowhead-left.png" alt="">
 </button>
 <div class="carousel__track-container">
   <ul class="carousel__track">
-    <% carouselImgPaths.forEach((carouselImgPath, index) => { %>
-        <li class="carousel__slide <% if(index === 0) { %>current-slide<% } %>">
-          <img class="carousel__image" src="<%= carouselImgPath %>" alt="">
-        </li>
-    <% }) %>
+    <%- include(pathToSlideFile) %>
   </ul>
 </div>
-<button class="carousel__button carousel__button--right">
+<button class="carousel__button carousel__button--right <%= buttonStyle %>">
   <img src="/icons/arrowhead-right.png" alt="">
 </button>
 
 <div class="carousel__nav">
-  <% for (let i = 0; i < carouselImgCount; i++) { %>
+  <% for (let i = 0; i < slidesCount; i++) { %>
     <button class="carousel__indicator <% if(i === 0) { %>current-slide<% } %>"></button>
   <% } %> 
 </div>

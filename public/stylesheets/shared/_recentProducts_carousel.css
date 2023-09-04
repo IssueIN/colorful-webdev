@@ -1,0 +1,4 @@
+.recentProducts-carousel__button {
+  top: 50%;
+  transform: trasnlateY(-50%); 
+}

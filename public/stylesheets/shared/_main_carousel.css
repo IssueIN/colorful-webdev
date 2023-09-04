@@ -1,0 +1,19 @@
+.main-carousel__button {
+  top: 0;
+  opacity: 0;
+  height: 100%;
+}
+
+.main-carousel__button:hover {
+  background-color: rgba(211,211,211,0.2);
+  opacity: 1;
+  transition: opacity 300ms ease;
+}
+
+.main-carousel__button:hover.carousel__button--right{
+  border-radius:0 5px 5px 0;
+}
+
+.main-carousel__button:hover.carousel__button--left{
+  border-radius:5px 0 0 5px;
+}

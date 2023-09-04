@@ -2,7 +2,8 @@
 @import 'shared/header.css';
 @import 'shared/animations.css';
 @import 'shared/carousel.css';
-@import 'shared/slider--recentProduct.css';
+@import 'shared/_main_carousel.css';
+@import 'shared/_recentProducts_carousel.css';
 
 body {
   margin: 0;

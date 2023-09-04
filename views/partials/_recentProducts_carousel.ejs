@@ -1,0 +1,8 @@
+<% recentProducts.forEach((recentProduct, index) => { %>
+  <li class="carousel__slide <% if(index === 0) { %>current-slide<% } %>">
+    <div class="slide__product-details-container">
+      <img class="product-tnb" src="/uploads/productImg-placeholder.png" height="64">
+      <%= recentProduct.partNumber %>
+    </div>
+  </li>
+<% }) %>

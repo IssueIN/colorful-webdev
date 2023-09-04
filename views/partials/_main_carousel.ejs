@@ -1,0 +1,5 @@
+<% carouselImgPaths.forEach((carouselImgPath, index) => { %>
+  <li class="carousel__slide <% if(index === 0) { %>current-slide<% } %>">
+    <img class="carousel__image" src="<%= carouselImgPath %>" alt="">
+  </li>
+<% }) %>

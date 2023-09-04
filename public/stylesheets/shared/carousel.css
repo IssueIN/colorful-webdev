@@ -1,6 +1,13 @@
-.carousel {
+.main-carousel {
   position: relative;
   height: 400px;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.recentProduct-carousel {
+  position: relative;
+  height: 200px;
   width: 70%;
   margin: 0 auto;
 }
@@ -36,8 +43,6 @@
 
 .carousel__button {
   position: absolute;
-  top: 50%;
-  transform: trasnlateY(-50%);
   background: transparent;
   border: 0;
   cursor: pointer;
