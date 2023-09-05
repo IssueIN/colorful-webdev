@@ -1,0 +1,33 @@
+<table>
+  <tr>
+    <th class="product-table__first-col">Part# & Mfr</th>
+    <th class="product-table__second-col">Quantity Avaliable</th>
+    <th>Price</th>
+    <th>Package Type</th>
+    <th>Packaging</th>
+    <th>Data Sheet</th>
+  </tr>
+  <% products.forEach(product => { %>
+    <tr>
+      <td>
+        <div class="product-info-container">
+          <div class="product-img-container">
+            <img src="/uploads/productImg-placeholder.png" height="48">
+          </div>
+          <div>
+            <%= product.partNumber %><br>
+            <%= product.manufacturer.name %>
+          </div>
+        </div>
+      </td>
+      <td><%= product.stock %></td>
+      <td><% product.price.forEach(pricelevel => { %>
+        <%= pricelevel.qty %> : <%= pricelevel.price %><br>
+      <%}) %>
+      </td>
+      <td><%= product.packageCase %></td>
+      <td><%= product.packaging %></td>
+      <td>place for datasheet</td>
+    </tr>
+  <% }) %>
+</table>

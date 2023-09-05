@@ -3,7 +3,7 @@
     <% if (item.name) { %>
       <li><a><%= item.name %></a></li>
     <% } else { %>
-      <li><a><%= item %></a></li>
+      <li><a href="/products/<%= item %>"><%= item %></a></li>
     <% } %>
   <% }) %>
 </ul>

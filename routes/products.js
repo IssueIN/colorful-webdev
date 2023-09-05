@@ -91,6 +91,20 @@ router.get('/results', async (req, res) => {
   }
 })
 
+//categories route
+router.get('/:category', async(req, res) =>{
+  try {
+    const products = await Product.find({category: req.params.category}).populate('manufacturer').exec()
+    res.render('products/show',{
+      products: products,
+      searchOptions: req.query,
+      category: req.params.category
+    })
+  } catch {
+    res.send('error!')
+  }
+})
+
 async function renderNewPage(res, product, hasError = false) {
   try {
     const manufacturers = await Manufacturers.find({})
