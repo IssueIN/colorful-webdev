@@ -171,7 +171,9 @@ a {
 .dropdown li {
   opacity: 0;
   margin: 0 0.8rem 0 0.8rem;
-  padding: 0.5rem 0 0.5rem 0.2rem;
+  padding: 0.5rem 0.4rem 0.5rem 0.6rem; 
+  background-color: var(--color-theme-green);
+  border-top: 1.5px solid white;
 }
 
 .dropdown li:hover {
@@ -208,7 +210,7 @@ a {
 
 .dropdown li a:hover {
   padding-left: 10px;
-  border-left: 2px solid var(--color-theme-green);
+  border-left: 2px solid var(--color-theme-yello);
   transition: all 0.3s ease;
 }
 
@@ -217,7 +219,6 @@ a {
 }
 
 .dropdown li a {
-  color: var(--color-theme-green);
   transition: all 0.5s ease;
 } 
 
