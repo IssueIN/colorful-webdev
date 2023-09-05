@@ -4,7 +4,13 @@
 @import 'shared/carousel.css';
 @import 'shared/_main_carousel.css';
 @import 'shared/_recentProducts_carousel.css';
+@import 'shared/all-product.css';
+@import 'shared/contact-widget.css';
 
 body {
   margin: 0;
+}
+
+.index-page-container {
+  padding-top: 3%
 }

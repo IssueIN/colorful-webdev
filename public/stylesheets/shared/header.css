@@ -17,10 +17,6 @@
   }
 }
 
-header {
-  padding-bottom: 3.5%;
-}
-
 .header-row-top, .logo-container, .header-search-container, .links-row-container,.header-row-bottom, .header-bottom-right-wrapper, .header-search-container > form,
 .header-row-bottom > ul,
 .header-row-bottom > ul > li {

@@ -1,0 +1,77 @@
+.contact-widget-container{
+  position: fixed;
+  top: 40%;
+  right: 0;
+}
+
+.contact-widget-col li{
+  background-color: var(--color-theme-green);
+  width: 50px;
+  height: 50px;
+  border-radius: 5% 0 0 5%;
+} 
+
+.contact-widget__shown-icon img, .contact-widget__shown-icon {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+}
+
+.contact-widget__shown-icon:hover,
+.contact-widget__shown-icon:hover > img,
+.contact-widget-col:hover .contact-widget__shown-icon,
+.contact-widget-col:hover .contact-widget__shown-icon > img{
+  cursor: pointer;
+  opacity: 1;
+}
+
+.contact-widget__shown-icon img, .contact-widget__shown-icon {
+  transition: opacity 200ms ease;
+}
+
+.contact-widget-col{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
+.contact-widget-col li{
+  margin-top: 5px;
+}
+
+.contact-widget__hidden-icon {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 200ms ease;
+}
+
+.contact-widget__hidden-icon:hover{
+  cursor: pointer;
+}
+
+.contact-widget__shown-icon:hover~ .contact-widget__hidden-icon,
+.contact-widget-col:hover .contact-widget__hidden-icon{
+  visibility: visible;
+  opacity: 1;
+}
+
+.contact-widget__icon-container {
+  background-color: var(--color-theme-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease;
+  height: 100%;
+  width: 100%;
+  border-radius: 5% 0 0 5%;
+}
+
+.contact-widget__hidden-icon:hover .contact-widget__icon-container{
+  transform: translateX(-10px);
+}

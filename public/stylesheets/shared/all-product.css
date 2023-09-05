@@ -1,0 +1,26 @@
+.all-product-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.all-product-container > table {
+  width: 100%;
+}
+
+.all-product-container > table th {
+  text-align: start;
+}
+
+.product-info-container {
+  display : flex;
+  align-items: center;
+}
+
+.product-table__first-col {
+  width: 25%;
+
+}
+
+.product-table__second-col {
+  width: 20%;
+}

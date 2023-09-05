@@ -8,12 +8,10 @@ const dataSheetType = ['application/pdf']
 
 //All Products Route
 router.get('/', async (req, res) => {
-  let query = Product.find()
-  if (req.query.partNumber != null && req.query.partNumber != '') {
-    query = query.regex('partNumber', new RegExp(req.query.partNumber, 'i'))
-  }
   try {
-    const products = await query.exec()
+    const products = await Product.find({})
+    .populate('manufacturer')
+    .exec();
     res.render('products/index',{
       products: products,
       searchOptions: req.query
@@ -113,18 +111,6 @@ async function renderNewPage(res, product, hasError = false) {
   }
 }
 
-// function saveFile(product, fileEncoded, fileTypes, fieldName) {
-//   if (fileEncoded == null) return;
-//   const file = JSON.parse(fileEncoded);
-
-//   if (file !== null && fileTypes.includes(file.type)) {
-//     product[fieldName] = new Buffer.from(file.data, 'base64');
-    
-//     const fieldType = fieldName + 'Type';
-//     product[fieldType] = file.type;
-//   }
-// }
-
 function saveFile(product, fileEncoded, fileTypes, fieldName) {
   if (fileEncoded == null) return;
   const file = JSON.parse(fileEncoded);
@@ -154,7 +140,5 @@ function saveFile(product, fileEncoded, fileTypes, fieldName) {
 //   }
 //   return query;
 // }
-
-
 
 module.exports = router
