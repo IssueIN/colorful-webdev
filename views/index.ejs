@@ -7,23 +7,19 @@
       buttonStyle: 'main-carousel__button'
     }) %>
   </div>
-  
-  <h2>Recently Added</h2>
-  
-  <div class="recentProduct-carousel">
-    <%- include('./partials/carousel', {
-      pathToSlideFile: '_recentProducts_carousel',
-      slidesCount: 5,
-      buttonStyle: 'recentProducts-carousel__button',
-    }) %>
+
+  <div class="recently-added-wrapper">
+    <h2>Recently Added</h2>
+    <div class="recentProduct-carousel">
+      <%- include('./partials/carousel', {
+        pathToSlideFile: '_recentProducts_carousel',
+        slidesCount: Math.ceil(recentProducts.length/5),
+        buttonStyle: 'recentProducts-carousel__button',
+      }) %>
+    </div>
+    
   </div>
-  
-  <div>
-    <% recentProducts.forEach(product => { %>
-      <div><%= product.partNumber %></div>
-    <% }) %>
-  </div>
-  
+
   <h2>Manufacturers</h2>
   <div>
     <% manufacturers.forEach(manufacturer => { %>

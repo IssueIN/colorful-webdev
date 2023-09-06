@@ -45,7 +45,8 @@ a {
 }
 
 .logo-container > a {
-  color: var(--color-theme-yello);
+  font-family: 'Sans Pro';
+  color: var(--color-theme-yellow);
   font-size: 1.8rem;
   font-weight: bold;
   margin-left: 1rem;
@@ -217,12 +218,12 @@ a {
 
 .dropdown li a:hover {
   padding-left: 10px;
-  border-left: 2px solid var(--color-theme-yello);
+  border-left: 2px solid var(--color-theme-yellow);
   transition: all 0.3s ease;
 }
 
 .header-row-bottom a {
-  color: var(--color-theme-yello);
+  color: var(--color-theme-yellow);
 }
 
 .dropdown li a {
@@ -232,5 +233,5 @@ a {
 .lang-container {
   padding-right: 2rem;
   font-size: 0.8rem;
-  color: var(--color-theme-yello);
+  color: var(--color-theme-yellow);
 }

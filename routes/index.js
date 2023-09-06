@@ -8,7 +8,7 @@ const path = require('path');
 router.get('/', async (req, res) => {
   let recentProducts
   try {
-    recentProducts = await Product.find().sort({publishedAt: 'desc'}).limit(10).exec()
+    recentProducts = await Product.find().sort({publishedAt: 'desc'}).limit(10).populate('manufacturer').exec()
 
     const carouselPath = path.join(__dirname, '../public/uploads/carousel-img');
 

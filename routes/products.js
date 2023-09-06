@@ -83,7 +83,7 @@ router.post('/', async (req, res) =>{
   })
   
   saveFile(product, req.body.image, imageMimeTypes, 'image')
-  saveFile(product, req.body.dataSheet, dataSheetType,'dataSheet')
+  //saveFile(product, req.body.dataSheet, dataSheetType,'dataSheet')
 
   try {
     const newProduct = await product.save()

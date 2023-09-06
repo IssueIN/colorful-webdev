@@ -1,8 +1,27 @@
-<% recentProducts.forEach((recentProduct, index) => { %>
-  <li class="carousel__slide <% if(index === 0) { %>current-slide<% } %>">
+<% const numOfProductsPerSlide = 5 %>
+<% for (let i = 0; i < recentProducts.length; i+=numOfProductsPerSlide ) {%>
+  <li class="carousel__slide <% if(i === 0) { %>current-slide<% } %> recentProducts-carousel__slide">
+  <% for (let j = i; j < i + numOfProductsPerSlide && j < recentProducts.length; j++) { %>
     <div class="slide__product-details-container">
-      <img class="product-tnb" src="/uploads/productImg-placeholder.png" height="64">
-      <%= recentProduct.partNumber %>
+      <% const recentProduct = recentProducts[j] %>
+      <div class="recentProduct-img-container">
+        <img class="product-tnb" src="/uploads/productImg-placeholder.png" height="64">
+      </div>
+      <div class="recentProduct-info-container">
+        <div class="top-section">
+          <%= recentProduct.partNumber %>
+        </div>
+        <div class="bottom-section">
+          <div class="recentProduct-category">
+            <%= recentProduct.category %>
+          </div>
+          <div>&#183;</div>
+          <div class="recentProduct-manufacturer">
+            <%= recentProduct.manufacturer.name %>
+          </div>
+        </div>
+      </div>
     </div>
+  <% } %>
   </li>
-<% }) %>
+<% } %>

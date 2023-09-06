@@ -1,3 +1,9 @@
+.main-carousel {
+  position: relative;
+  height: 400px;
+  width: 70%;
+  margin: 0 auto;
+}
 
 .main-carousel__button {
   top: 0;
