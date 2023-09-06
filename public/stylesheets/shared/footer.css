@@ -1,0 +1,16 @@
+.footer {
+  background-color: var(--color-theme-green);
+  display: flex;
+  align-items: center;
+  height: 200px;
+  width: 100%;
+}
+
+.footer__logo-container {
+  padding-left: 40px;
+  width: 15%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  border-right: 2px solid var(--color-theme-yello);
+}

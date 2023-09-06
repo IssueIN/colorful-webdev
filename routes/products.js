@@ -6,17 +6,46 @@ const imageMimeTypes = ['image/jpeg','image/png']
 const dataSheetType = ['application/pdf']
 
 
-//All Products Route
-router.get('/', async (req, res) => {
+// //All Products Route
+// router.get('/', async (req, res) => {
+//   try {
+//     const products = await Product.find({})
+//     .populate('manufacturer')
+//     .exec();
+//     res.render('products/index',{
+//       products: products,
+//       searchOptions: req.query
+//     })
+//   } catch {
+//     res.redirect('/')
+//   }
+// })
+
+router.get('/', async (req, res) =>{
   try {
-    const products = await Product.find({})
-    .populate('manufacturer')
-    .exec();
-    res.render('products/index',{
+    let query = Product.find().populate('manufacturer');
+
+    if(req.query.category) {
+      query = query.where('category', req.query.category);
+    }
+
+    if(req.query.manufacturer) {
+      const manufacturer = await Manufacturer.findOne({'name': req.query.manufacturer});
+      if (manufacturer) {
+        query = query.where('manufacturer', manufacturer.id);
+      }
+    }
+
+    const products = await query.exec();
+    res.render('products/index', {
       products: products,
-      searchOptions: req.query
+      searchOptions: req.query,
+      category: req.query.category,
+      manufacturer: req.query.manufacturer,
     })
-  } catch {
+
+  } catch (err) {
+    console.log(err)
     res.redirect('/')
   }
 })
@@ -91,19 +120,6 @@ router.get('/results', async (req, res) => {
   }
 })
 
-//categories route
-router.get('/:category', async(req, res) =>{
-  try {
-    const products = await Product.find({category: req.params.category}).populate('manufacturer').exec()
-    res.render('products/show',{
-      products: products,
-      searchOptions: req.query,
-      category: req.params.category
-    })
-  } catch {
-    res.send('error!')
-  }
-})
 
 async function renderNewPage(res, product, hasError = false) {
   try {

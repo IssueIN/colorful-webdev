@@ -14,11 +14,14 @@
 
 </head>
 <body>
-  <%- include('../partials/header')  %>
-  <%- include('../partials/errorMessage') %>
-  <%- body  %>
-  <%- include('../partials/footer') %>
-
+  <div class="page-container">
+    <%- include('../partials/header')  %>
+    <div class="content-wrap">
+      <%- include('../partials/errorMessage') %>
+      <%- body  %>
+    </div>
+    <%- include('../partials/footer') %>
+  </div>
   <script src="/javascripts/addRemoveRow.js"></script>
   <script src="/javascripts/searchContentListener.js"></script>
   <script src="/javascripts/dropdown.js"></script>

@@ -6,6 +6,7 @@
 @import 'shared/_recentProducts_carousel.css';
 @import 'shared/all-product.css';
 @import 'shared/contact-widget.css';
+@import 'shared/footer.css';
 
 body {
   margin: 0;
@@ -13,4 +14,14 @@ body {
 
 .index-page-container {
   padding-top: 3%
+}
+
+.page-container{
+  display: flex;
+  flex-direction: column;
+  min-height: 120vh;
+}
+
+.content-wrap {
+  flex: 1;
 }

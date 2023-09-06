@@ -1,9 +1,9 @@
 <ul class="dropdown">
   <% items.forEach(item => { %>
     <% if (item.name) { %>
-      <li><a><%= item.name %></a></li>
+      <li><a href="/products?manufacturer=<%= item.name %>"><%= item.name %></a></li>
     <% } else { %>
-      <li><a href="/products/<%= item %>"><%= item %></a></li>
+      <li><a href="/products?category=<%= item %>"><%= item %></a></li>
     <% } %>
   <% }) %>
 </ul>

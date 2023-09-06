@@ -6,12 +6,8 @@ const imageMimeTypes = ['image/jpeg','image/png']
 
 //All Manufacturer Route
 router.get('/', async (req, res) => {
-  let searchOptions = {}
-  if(req.query.name != null && req.query.name !== '') {
-    searchOptions.name = new RegExp(req.query.name, 'i')
-  }
   try {
-    const manufacturers = await Manufacturer.find(searchOptions)
+    const manufacturers = await Manufacturer.find({})
      res.render('manufacturers/index', {
       manufacturers: manufacturers,
       searchOptions: req.query

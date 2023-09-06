@@ -1,10 +1,5 @@
-<h2>Search Manufacturers</h2>
-<form action="/manufacturers" method="GET">
-  <label>Name</label>
-  <input type="text" name="name" value="<%= searchOptions.name %>">
-  <button type="submit">Search</button>
-</form>
-<br>
+<h2>All Manufacturers</h2>
+
 <% manufacturers.forEach(manufacturer => { %>
   <div><%= manufacturer.name %></div>
 <% }) %>
