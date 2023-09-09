@@ -12,6 +12,11 @@ const pricingSchema = new mongoose.Schema({
 })
 
 const productSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    required: true,
+    default: 'product',
+  },
   image: {
     type: Buffer,
     required: true

@@ -9,10 +9,12 @@ const bodyParser = require('body-parser')
 
 const Manufacturer = require('./models/manufacturer')
 const Product = require('./models/product')
+const Solution = require('./models/solution')
 
 const indexRouter = require('./routes/index')
 const manufacturerRouter = require('./routes/manufacturers')
 const productRouter = require('./routes/products')
+const solutionRouter = require('./routes/solutions')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -31,6 +33,7 @@ app.use(async (req, res, next) => {
   try {
     res.locals.categories = await Product.schema.path('category').enumValues;;
     res.locals.manufacturers = await Manufacturer.find({}).exec();
+    res.locals.solutions = await Solution.find({}).exec();
     next();
   } catch (err) {
     next(err);
@@ -40,6 +43,6 @@ app.use(async (req, res, next) => {
 app.use('/', indexRouter)
 app.use('/manufacturers',manufacturerRouter)
 app.use('/products', productRouter)
-
+app.use('/solutions', solutionRouter)
 
 app.listen(process.env.PORT || 3000)

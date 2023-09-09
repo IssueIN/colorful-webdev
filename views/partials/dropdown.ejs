@@ -1,7 +1,11 @@
 <ul class="dropdown">
   <% items.forEach(item => { %>
     <% if (item.name) { %>
-      <li><a href="/products?manufacturer=<%= item.name %>"><%= item.name %></a></li>
+      <% if (item.type === 'manufacturer') {%>
+        <li><a href="/products?manufacturer=<%= item.name %>"><%= item.name %></a></li>
+      <% } else { %>
+        <li><a href="/solutions?name=<%= item.name %>"><%= item.name %></a></li>
+      <% } %>
     <% } else { %>
       <li><a href="/products?category=<%= item %>"><%= item %></a></li>
     <% } %>

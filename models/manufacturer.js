@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 const manufacturerSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    required: true,
+    default: 'manufacturer',
+  },
   name: {
     type: String,
     required: true
