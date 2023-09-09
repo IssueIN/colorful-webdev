@@ -11,9 +11,9 @@ router.get('/', async (req, res) => {
       query = query.where('name', req.query.name);
     }
 
-    const solutions = await query.exec();
+    const solution = await query.exec();
      res.render('solutions/index', {
-      solutions: solutions,
+      solution: solution,
       searchOptions: req.query,
       name: req.query.name
     })

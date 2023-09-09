@@ -2,8 +2,7 @@
   <h2><%= name %></h2>
 <% } else { %>
   <h2>All Solutions</h2>
+  <% solutions.forEach(solution => { %>
+    <div><%= solution.name %></div>
+  <% }) %>
 <% } %>
-
-<% solutions.forEach(solution => { %>
-  <div><%= solution.name %></div>
-<% }) %>

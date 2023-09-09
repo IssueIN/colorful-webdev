@@ -1,6 +1,6 @@
 <div>
   <label>Part Number</label>
-  <input type="text" name="partNumber" value = "<%= product.partNumber %>">
+  <input type="text" name="partNumber" value = "<%= product.partNumber %>" required>
 </div>
 
 <div>
@@ -10,7 +10,7 @@
 
 <div>
   <label>Manufacturer</label>
-  <select name="manufacturer">
+  <select name="manufacturer" required>
   <% manufacturers.forEach(manufacturer => { %>
     <% if (manufacturer.id === product.manufacturer) {%>
         <option selected label="<%= manufacturer.name %>" value="<%= manufacturer.id %>">
@@ -23,19 +23,19 @@
 
 <div>
   <label>Description</label>
-  <textarea name="description">
+  <textarea name="description" required>
     <%= product.description %>
   </textarea>
 </div>
 
 <div>
   <label>Packaging</label>
-  <input type="text" name="packaging" value = "<%= product.packaging %>">
+  <input type="text" name="packaging" value = "<%= product.packaging %>" required>
 </div>
 
 <div>
   <label>Package Case</label>
-  <select name="packageCase">
+  <select name="packageCase" required>
   <% packageCaseOptions.forEach(packageCase => { %>
     <% if (packageCase === product.packageCase) {%>
         <option selected label="<%= packageCase %>" value="<%= packageCase %>">
@@ -48,12 +48,12 @@
 
 <div>
   <label>In Stock Number</label>
-  <input type="number" name="stock" value = "<%= product.stock %>">
+  <input type="number" name="stock" value = "<%= product.stock %>" required>
 </div>
 
 <div>
   <label>Category</label>
-  <select name="category">
+  <select name="category" required>
   <% categories.forEach(category => { %>
     <% if (category === product.category) {%>
         <option selected label="<%= category %>" value="<%= category %>">
@@ -67,8 +67,8 @@
 <div id="pricingTable">
   <label>Pricing (In cents)</label>
   <div class="pricingRow">
-    <input type="number" placeholder="Quantity" name="qty[]" />
-    <input type="number" placeholder="Price" name="price[]" />
+    <input type="number" placeholder="Quantity" name="qty[]" required/>
+    <input type="number" placeholder="Price" name="price[]" required/>
     <button type="button" onclick="removeRow(this)">Remove</button>
   </div>
 </div>
