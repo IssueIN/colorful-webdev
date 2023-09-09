@@ -8,4 +8,14 @@ const pond = FilePond.create(inputElement);
 //   imageResizeTargetHeight: 150
 // })
 
+const submitButton = document.getElementById('create-button');
+
+pond.on('addfilestart', (error, file) => {
+  submitButton.disabled = true;
+});
+
+pond.on('addfile', (error, file) => {
+  submitButton.disabled = false;
+});
+
 FilePond.parse(document.body);

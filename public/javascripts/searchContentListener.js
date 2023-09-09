@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.querySelector('input[name="search"]');
-  const searchButton = document.querySelector('button[type="submit"]');
+  const searchButton = document.querySelector('#search-button');
   
   searchButton.disabled = !searchInput.value.trim();
   
