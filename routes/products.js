@@ -97,7 +97,7 @@ router.post('/', async (req, res) =>{
 //Search Results Route
 router.get('/results', async (req, res) => {
   let searchResults = []
-  let query = Product.find()
+  let query = Product.find().populate('manufacturer');
   if (req.query.search != null && req.query.search !== '') {
     query = query.regex('partNumber', new RegExp(req.query.search, 'i'))
   }

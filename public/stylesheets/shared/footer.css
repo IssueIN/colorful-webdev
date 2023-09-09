@@ -2,7 +2,7 @@
   background-color: var(--color-theme-green);
   display: flex;
   align-items: center;
-  height: 200px;
+  height: 240px;
   width: 100%;
 }
 
@@ -13,4 +13,43 @@
   display: flex;
   align-items: center;
   border-right: 2px solid var(--color-theme-yellow);
+}
+
+.footer__link-container {
+  display: flex;
+}
+
+.footer__contact {
+  height: 100%;
+  margin-top: 1rem;
+}
+
+.footer__contact-links{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 0;
+  margin-block-start: 2.2rem;
+}
+
+.footer__contact > div {
+  color: var(--color-theme-yellow);
+  font-weight: 600;
+}
+
+.footer__contact-links li {
+  display: flex;
+  align-items: center;
+  padding-top: 2%;
+}
+
+.footer__contact-links span{
+  color: var(--color-theme-yellow);
+  font-size: 0.6rem;
+  padding-left: 1.2rem;
+}
+
+.footer__contact-links img {
+  height: 24px;
 }

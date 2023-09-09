@@ -1,5 +1,17 @@
-.recently-added-wrapper {
+.recently-added-wrapper, .manufacturers-wrapper {
   width:80%;
   padding-left: 10%;
   padding-top: 4%;
+}
+
+.manufacturers-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  padding-left: 5%;
+}
+
+.manufacturers-logo-container img{
+  border-radius: 5px;
 }

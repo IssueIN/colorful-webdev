@@ -89,7 +89,7 @@ function carousel (rootSelector, autoSlide = false) {
   
 }
 
-carousel('.main-carousel');
+carousel('.main-carousel', true);
 carousel('.recentProduct-carousel');
 
 
