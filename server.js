@@ -6,7 +6,6 @@ const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
-const bcrypt = require('bcrypt')
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
@@ -15,13 +14,13 @@ const methodOverride = require('method-override')
 const Manufacturer = require('./models/manufacturer')
 const Product = require('./models/product')
 const Solution = require('./models/solution')
-const InternalUser = require('./models/internalUser')
+const User = require('./models/user')
 
 
 const initializePassport = require('./passport-config')
 initializePassport(passport, 
-  username => InternalUser.findOne({username: username}),
-  id => InternalUser.findById(id)
+  username => User.findOne({username: username}),
+  id => User.findById(id)
 )
 
 
@@ -29,7 +28,7 @@ const indexRouter = require('./routes/index')
 const manufacturerRouter = require('./routes/manufacturers')
 const productRouter = require('./routes/products')
 const solutionRouter = require('./routes/solutions')
-const internalRouter = require('./routes/internal')
+const userRouter = require('./routes/user')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -69,6 +68,6 @@ app.use('/', indexRouter)
 app.use('/manufacturers',manufacturerRouter)
 app.use('/products', productRouter)
 app.use('/solutions', solutionRouter)
-app.use('/internal', internalRouter)
+app.use('/user', userRouter)
 
 app.listen(process.env.PORT || 3000)

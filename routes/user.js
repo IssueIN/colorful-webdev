@@ -1,55 +1,55 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
 const router = express.Router()
-const InternalUser = require('../models/internalUser')
+const User = require('../models/user')
 const passport = require('passport')
 const { checkAuthenticated, checkNotAuthenticated, checkAdmin} = require('../authMiddleware');
 
 router.get('/', checkAuthenticated, (req, res) => {
-  res.render('internal/index.ejs', {
+  res.render('user/index.ejs', {
     name: req.user.username,
-    type: req.user.type
+    role: req.user.role
   });
 })
 
 router.get('/login', checkNotAuthenticated, (req, res) => {
-  res.render('internal/login.ejs')
+  res.render('user/login.ejs')
 })
 
 router.post('/login',checkNotAuthenticated, passport.authenticate('local', {
-  successRedirect: '/internal',
-  failureRedirect: '/internal/login',
+  successRedirect: '/user',
+  failureRedirect: '/user/login',
   failureFlash: true,
 }))
 
 router.get('/register', checkAdmin, (req, res) => {
-  const internalUserTypes = InternalUser.schema.path('type').enumValues;
-  const internalUser = new InternalUser();
-  res.render('internal/register.ejs', {
-    internalUser: internalUser,
-    types: internalUserTypes
+  const userRoles = User.schema.path('role').enumValues;
+  const user = new User();
+  res.render('user/register.ejs', {
+    user: user,
+    roles: userRoles
   })
 })
 
 router.post('/register', checkAdmin, async (req, res) => {
-  const internalUser = new InternalUser({
+  const user = new User({
     username: req.body.username,
-    type: req.body.type
+    role: req.body.role
   })
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    internalUser.password = hashedPassword;
-    const newInternalUser = await internalUser.save();
-    res.redirect('/internal/login')
+    user.password = hashedPassword;
+    const newUser = await user.save();
+    res.redirect('/user/login')
   } catch {
-    res.redirect('/internal/register');
+    res.redirect('/user/register');
   }
 })
 
 router.delete('/logout', (req, res, next) => {
   req.logOut((err) => {
     if(err) {return next(err)}
-    return res.redirect('/internal')
+    return res.redirect('/user')
   });
 })
 
