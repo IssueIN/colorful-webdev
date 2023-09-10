@@ -24,7 +24,6 @@ router.get('/', async (req, res) => {
       const carouselImgPaths = pathModify(imagePaths);
 
       res.render('index',{
-        searchOptions: req.query,
         recentProducts: recentProducts,
         carouselImgCount: imageCount,
         carouselImgPaths: carouselImgPaths,

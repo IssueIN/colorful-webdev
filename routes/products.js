@@ -4,7 +4,7 @@ const Product = require('../models/product')
 const Manufacturer = require('../models/manufacturer')
 const imageMimeTypes = ['image/jpeg','image/png']
 const dataSheetType = ['application/pdf']
-
+const { checkAuthenticated } = require('../authMiddleware');
 
 // //All Products Route
 // router.get('/', async (req, res) => {
@@ -39,7 +39,6 @@ router.get('/', async (req, res) =>{
     const products = await query.exec();
     res.render('products/index', {
       products: products,
-      searchOptions: req.query,
       category: req.query.category,
       manufacturer: req.query.manufacturer,
     })
@@ -51,14 +50,13 @@ router.get('/', async (req, res) =>{
 })
 
 //New Products Route
-router.get('/new', async (req, res) => {
+router.get('/new', checkAuthenticated, async (req, res) => {
   try {
     const packageCaseOptions = await Product.schema.path('packageCase').enumValues;
     const product = new Product()
     res.render('products/new', {
       product: product,
       packageCaseOptions: packageCaseOptions,
-      searchOptions: req.query
     })
   } catch {
     res.redirect('/products')
@@ -66,7 +64,7 @@ router.get('/new', async (req, res) => {
 })
 
 //Create Products Route
-router.post('/', async (req, res) =>{
+router.post('/', checkAuthenticated, async (req, res) =>{
   const pricingArray = req.body['qty[]'].map((q, index) => {
     return {qty: q, price: req.body['price[]'][index]}
   })
@@ -105,12 +103,10 @@ router.get('/results', async (req, res) => {
     searchResults = await query.exec()
     if (searchResults.length > 0) {
       res.render('products/results', {
-        searchOptions: req.query,
         searchResults: searchResults
       })
     } else {
       res.render('products/results', {
-        searchOptions: req.query,
         searchResults: searchResults,
         errorMessage: "can't find items"
       })

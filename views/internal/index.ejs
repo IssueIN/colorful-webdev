@@ -1,0 +1,20 @@
+<h2>Hi <%= name %> </h2>
+<form action="/internal/logout?_method=DELETE" method="POST">
+  <button type="submit">Log Out</button>
+</form>
+
+<% if(type === "admin") { %>
+  <a href="/internal/register">Add User</a>
+<% } %>
+
+<nav>
+  <a href="/">Colorful</a>
+  <ul>
+    <li><a href="/manufacturers">Manufacturers</a></li>
+    <li><a href="/manufacturers/new">Add Manufacturers</a></li>
+    <li><a href="/products">Products</a></li>
+    <li><a href="/products/new">Add Products</a></li>
+    <li><a href="/solutions">Solutions</a></li>
+    <li><a href="/solutions/new">Add Solutions</a></li>
+  </ul>
+</nav>

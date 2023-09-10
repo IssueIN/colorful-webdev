@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Solution = require('../models/solution')
 const imageMimeTypes = ['image/jpeg','image/png']
+const { checkAuthenticated } = require('../authMiddleware');
 
 //All Solutions Route
 router.get('/', async (req, res) => {
@@ -23,7 +24,7 @@ router.get('/', async (req, res) => {
 })
 
 //New Solution Route
-router.get('/new', (req, res) => {
+router.get('/new', checkAuthenticated, (req, res) => {
   res.render('solutions/new', {
     solution: new Solution(),
     searchOptions: req.query
@@ -31,7 +32,7 @@ router.get('/new', (req, res) => {
 })
 
 //Create Solution Route
-router.post('/', async (req, res) => {
+router.post('/', checkAuthenticated, async (req, res) => {
   const solution = new Solution({
     name: req.body.name,
     description: req.body.description

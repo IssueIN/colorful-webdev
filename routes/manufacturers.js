@@ -3,6 +3,7 @@ const router = express.Router()
 const Manufacturer = require('../models/manufacturer')
 const Product = require('../models/product')
 const imageMimeTypes = ['image/jpeg','image/png']
+const { checkAuthenticated } = require('../authMiddleware');
 
 //All Manufacturer Route
 router.get('/', async (req, res) => {
@@ -10,7 +11,6 @@ router.get('/', async (req, res) => {
     const manufacturers = await Manufacturer.find({})
      res.render('manufacturers/index', {
       manufacturers: manufacturers,
-      searchOptions: req.query
     })
   } catch {
     res.redirect('/')
@@ -18,15 +18,14 @@ router.get('/', async (req, res) => {
 })
 
 //New Manufacturer Route
-router.get('/new', (req, res) => {
+router.get('/new', checkAuthenticated, (req, res) => {
   res.render('manufacturers/new', {
     manufacturer: new Manufacturer(),
-    searchOptions: req.query
   })
 })
 
 //Create Manufacturer Route
-router.post('/', async (req, res) => {
+router.post('/', checkAuthenticated, async (req, res) => {
   const manufacturer = new Manufacturer({
     name: req.body.name
   })
