@@ -16,13 +16,11 @@ const Product = require('./models/product')
 const Solution = require('./models/solution')
 const User = require('./models/user')
 
-
 const initializePassport = require('./passport-config')
 initializePassport(passport, 
   username => User.findOne({username: username}),
   id => User.findById(id)
 )
-
 
 const indexRouter = require('./routes/index')
 const manufacturerRouter = require('./routes/manufacturers')
@@ -63,6 +61,12 @@ app.use(async (req, res, next) => {
     next(err);
   }
 });
+
+app.get('/greeting', (req, res) => {
+  const reponse = 'hello!';
+  res.status(200);
+  res.send(response);
+})
 
 app.use('/', indexRouter)
 app.use('/manufacturers',manufacturerRouter)
