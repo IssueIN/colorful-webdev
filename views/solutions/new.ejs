@@ -1,6 +1,5 @@
-<h2>New Solution</h2>
+<h2><%= t("add") + t("solutions") %></h2>
 <form action="/solutions" method="POST">
   <%- include('_form_fields') %>
-  <a href="/user">Cancel</a>
-  <button type="submit" id="create-button">Create</button>
+  <%- include('../partials/_form_buttons') %>
 </form>

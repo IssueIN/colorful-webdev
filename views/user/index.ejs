@@ -4,17 +4,17 @@
 </form>
 
 <% if(role === "admin") { %>
-  <a href="/user/register">Add User</a>
+  <a href="/user/register"><%= t("add") + t("user") %></a>
 <% } %>
 
 <nav>
-  <a href="/">Colorful</a>
+  <a href="/"><%= t("mainPage") %></a>
   <ul>
-    <li><a href="/manufacturers">Manufacturers</a></li>
-    <li><a href="/manufacturers/new">Add Manufacturers</a></li>
-    <li><a href="/products">Products</a></li>
-    <li><a href="/products/new">Add Products</a></li>
-    <li><a href="/solutions">Solutions</a></li>
-    <li><a href="/solutions/new">Add Solutions</a></li>
+    <li><a href="/manufacturers"><%= t("all") + t("manufacturers") %></a></li>
+    <li><a href="/manufacturers/new"><%= t("add") + t("manufacturers") %></a></li>
+    <li><a href="/products"><%= t("all") + t("products")%></a></li>
+    <li><a href="/products/new"><%= t("add") + t("products") %></a></li>
+    <li><a href="/solutions"><%= t("all") + t("solutions") %></a></li>
+    <li><a href="/solutions/new"><%= t("add") + t("solutions") %></a></li>
   </ul>
 </nav>

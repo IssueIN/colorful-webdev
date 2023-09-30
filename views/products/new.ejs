@@ -1,7 +1,6 @@
-<h2>New Product</h2>
+<h2><%= t("add") + t("products") %></h2>
 <form action="/products" method="POST">
   <%- include('_form_fields') %>
   <br>
-  <a href="/user">Cancel</a>
-  <button type="submit" id="create-button">Create</button>
+  <%- include('../partials/_form_buttons') %>
 </form>

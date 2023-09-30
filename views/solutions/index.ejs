@@ -1,8 +1,8 @@
 <% if (name) { %>
   <h2><%= name %></h2>
 <% } else { %>
-  <h2>All Solutions</h2>
+  <h2><%= t("all") + t("solutions") %></h2>
   <% solutions.forEach(solution => { %>
-    <div><%= solution.name %></div>
+    <div><%= solution.name[lang] %></div>
   <% }) %>
 <% } %>

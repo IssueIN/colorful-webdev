@@ -6,31 +6,34 @@
     </div>
     <div class="header-search-container">
       <form action="/products/results" method="GET">
-        <input type="text" name="search" value="<%= searchOptions.search %>" placeholder="Enter Part#" class="header-search-bar">
+        <input type="text" name="search" value="<%= searchOptions.search %>" placeholder="<%= t("searchBarPlaceholder") %>" class="header-search-bar">
         <button type="submit" class="header-search-btn" id="search-button"><img src="/icons/search-icon-green.png" height="20"></button>
       </form>
     </div>
     <ul class="links-row-container">
-      <li><a href="/about-us">About</a></li>
-      <li><a href="/contact-us">Contact</a></li>
-      <li><a href="/join-us">Join us</a></li>
+      <li><a href="/about-us"><%= t("about") %></a></li>
+      <li><a href="/contact-us"><%= t("contact") %></a></li>
+      <li><a href="/join-us"><%= t("joinUs") %></a></li>
     </ul>
   </nav>
   <nav class="header-row-bottom">
     <ul>
       <li>
-        <a href="/products">All Products&dtrif;</a>
+        <a href="/products"><%= t("all") + t("products") %>&dtrif;</a>
         <%- include('dropdown', items = categories) %>
       </li>
       <li>
-        <a href="/manufacturers">Manufacturers&dtrif;</a>
+        <a href="/manufacturers"><%= t("manufacturers") %>&dtrif;</a>
         <%- include('dropdown', items = manufacturers) %>
       </li>
       <li>
-        <a href="/solutions">Solutions&dtrif;</a>
+        <a href="/solutions"><%= t("solutions") %>&dtrif;</a>
         <%- include('dropdown', items = solutions) %>
       </li>
     </ul>
     <div class="lang-container"><span>Language</span></div>
   </nav>
 </header>
+
+<!-- <button id="switchToEnglish">English</button>
+<button id="switchToChinese">Chinese</button> -->

@@ -9,7 +9,7 @@
   </div>
 
   <div class="recently-added-wrapper">
-    <h2>Recently Added</h2>
+    <h2><%= t("recentlyAdded") %></h2>
     <div class="recentProduct-carousel">
       <%- include('./partials/carousel', {
         pathToSlideFile: '_recentProducts_carousel',
@@ -20,7 +20,7 @@
   </div>
 
   <div class="manufacturers-wrapper">
-    <h2>Featured Manufacturers</h2>
+    <h2><%= t("featuredManufacturers") %></h2>
     <div class="manufacturers-logo-container">
       <% manufacturers.forEach(manufacturer => { %>
         <img src="/uploads/manufacturer-logo-placeholder.png" height="60">

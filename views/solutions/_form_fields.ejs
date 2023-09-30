@@ -1,16 +1,28 @@
 <div>
-  <label>Name</label>
-  <input type="text" name="name" value = "<%= solution.name %>" required>
+  <label><%= t("name") + `(` + t("en") + `)` %></label>
+  <input type="text" name="name[]" value = "<%= solution.name ? solution.name.en : ''  %>" required>
 </div>
 
 <div>
-  <label>Description</label>
-  <textarea name="description" required>
-    <%= solution.description %>
+  <label><%= t("name") + `(` + t("zh") + `)` %></label>
+  <input type="text" name="name[]" value = "<%= solution.name ? solution.name.zh : '' %>" required>
+</div>
+
+<div>
+  <label><%= t("description") + `(` + t("en") + `)` %></label>
+  <textarea name="description[]" required>
+    <%= solution.description ? solution.description.en : '' %>
   </textarea>
 </div>
 
 <div>
-  <label>Image</label>
+  <label><%= t("description") + `(` + t("zh") + `)` %></label>
+  <textarea name="description[]" required>
+    <%= solution.description ? solution.description.zh : '' %>
+  </textarea>
+</div>
+
+<div>
+  <label><%= t("image") %></label>
   <input type="file" name="img" class="filepond"/>
 </div>

@@ -33,9 +33,11 @@ router.get('/new', checkAuthenticated, (req, res) => {
 
 //Create Solution Route
 router.post('/', checkAuthenticated, async (req, res) => {
+  const description = bilingualObject(req.body['description[]'])
+  const name = bilingualObject(req.body['name[]'])
   const solution = new Solution({
-    name: req.body.name,
-    description: req.body.description
+    name: name,
+    description: description
   })
   saveImg(solution, req.body.img)
 
@@ -57,6 +59,13 @@ function saveImg(solution, ImgEncoded) {
   if (img !== null && imageMimeTypes.includes(img.type)) {
     solution.image = new Buffer.from(img.data, 'base64')
     solution.imageType = img.type
+  }
+}
+
+function bilingualObject(bilingualArray) {
+  return {
+    en: bilingualArray[0],
+    zh: bilingualArray[1]
   }
 }
 

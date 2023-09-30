@@ -1,10 +1,10 @@
 <div class="all-product-container">
   <% if (category) { %>
-    <h2>Products sorted by Category: <%= category %></h2>
+    <h2><%= category %></h2>
   <% } else if (manufacturer) { %>
-    <h2>Products by Manufacturer: <%= manufacturer %></h2>
+    <h2><%= manufacturer %></h2>
   <% } else { %>
-    <h2>All Products</h2>
+    <h2><%= t("all") + t("products") %></h2>
   <% } %>
   
   <%- include('_products_table', {

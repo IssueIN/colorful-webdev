@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const bilingualSchema = require('./_bilingual_schema')
 
 const solutionSchema = new mongoose.Schema({
   type: {
@@ -7,7 +8,7 @@ const solutionSchema = new mongoose.Schema({
     default: 'solution',
   },
   name: {
-    type: String,
+    type: bilingualSchema,
     required: true,
   },
   image: {
@@ -19,7 +20,7 @@ const solutionSchema = new mongoose.Schema({
     required: true
   },
   description: {
-    type: String,
+    type: bilingualSchema,
     required: true
   },
   addedAt: {

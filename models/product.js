@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const bilingualSchema = require('./_bilingual_schema')
+const { packageCaseOptions, categoryOptions } = require('./_enumValues')
 
 const pricingSchema = new mongoose.Schema({
   qty: {
@@ -9,7 +11,7 @@ const pricingSchema = new mongoose.Schema({
     type: Number,
     required: true
   }
-})
+}, { _id: false })
 
 const productSchema = new mongoose.Schema({
   type: {
@@ -35,16 +37,16 @@ const productSchema = new mongoose.Schema({
     ref:'Manufacturer'
   },
   description: {
-    type: String,
+    type: bilingualSchema,
     required: true
   },
   packaging: {
-    type: String,
+    type: bilingualSchema,
     required: true
   },
   packageCase: {
-    type: String,
-    enum: ['Tape & Reel', 'Cut Tape','Digi-Reel'],
+    type: bilingualSchema,
+    enum: packageCaseOptions,
     required: true
   },
   stock: {
@@ -69,8 +71,8 @@ const productSchema = new mongoose.Schema({
     default: Date.now
   },
   category: {
-    type: String,
-    enum: ['cat1', 'cat2', 'cat3', 'cat4','cat5','cat6'],
+    type: bilingualSchema,
+    enum: categoryOptions,
     required: true
   }
 })
@@ -88,5 +90,3 @@ productSchema.virtual('dataSheetPath').get(function() {
 })
 
 module.exports = mongoose.model('Product', productSchema)
-
-

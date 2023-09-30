@@ -4,6 +4,7 @@ const Product = require('../models/product')
 const Manufacturer = require('../models/manufacturer')
 const fs = require('fs');
 const path = require('path');
+const { default: i18next } = require('i18next');
 
 router.get('/', async (req, res) => {
   let recentProducts
@@ -46,7 +47,7 @@ router.get('/contact-us', (req, res) => {
 
 //join us route
 router.get('/join-us', (req, res) => {
-  res.send('this is join us page')
+  res.send(req.t("greeting"))
 })
 
 function pathModify(paths) {

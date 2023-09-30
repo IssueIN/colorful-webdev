@@ -1,15 +1,15 @@
 <div>
-  <label>Part Number</label>
+  <label><%= t("partNumber") %></label>
   <input type="text" name="partNumber" value = "<%= product.partNumber %>" required>
 </div>
 
 <div>
-  <label>Image</label>
+  <label><%= t("image") %></label>
   <input type="file" name="image" class="filepond"/>
 </div>
 
 <div>
-  <label>Manufacturer</label>
+  <label><%= t("manufacturer") %></label>
   <select name="manufacturer" required>
   <% manufacturers.forEach(manufacturer => { %>
     <% if (manufacturer.id === product.manufacturer) {%>
@@ -22,19 +22,31 @@
 </div>
 
 <div>
-  <label>Description</label>
-  <textarea name="description" required>
-    <%= product.description %>
+  <label><%= t("description") + `(` + t("en") + `)`%></label>
+  <textarea name="description[]" required>
+    <%= product.description ? product.description.en : '' %>
   </textarea>
 </div>
 
 <div>
-  <label>Packaging</label>
-  <input type="text" name="packaging" value = "<%= product.packaging %>" required>
+  <label><%= t("description") + `(` + t("zh") + `)`%> </label>
+  <textarea name="description[]" required>
+    <%= product.description ? product.description.zh : '' %>
+  </textarea>
 </div>
 
 <div>
-  <label>Package Case</label>
+  <label><%= t("packaging") + `(` + t("en") + `)`%> </label>
+  <input type="text" name="packaging[]" value = "<%= product.packaging ? product.packaging.en : '' %>" required>
+</div>
+
+<div>
+  <label><%= t("packaging") + `(` + t("zh") + `)`%> </label>
+  <input type="text" name="packaging[]" value = "<%= product.packaging ? product.packagin.zh : '' %>" required>
+</div>
+
+<div>
+  <label><%= t("packageCase") %></label>
   <select name="packageCase" required>
   <% packageCaseOptions.forEach(packageCase => { %>
     <% if (packageCase === product.packageCase) {%>
@@ -47,12 +59,12 @@
 </div>
 
 <div>
-  <label>In Stock Number</label>
+  <label><%= t("quantityAvaliable") %></label>
   <input type="number" name="stock" value = "<%= product.stock %>" required>
 </div>
 
 <div>
-  <label>Category</label>
+  <label><%= t("category") %></label>
   <select name="category" required>
   <% categories.forEach(category => { %>
     <% if (category === product.category) {%>
@@ -64,19 +76,22 @@
   </select>
 </div>
 
-<div id="pricingTable">
-  <label>Pricing (In cents)</label>
+<div id="pricingTable"      
+  data-quantity="<%= t('quantity') %>" 
+  data-price="<%= t('price') %>"
+  data-remove="<%= t('remove')  %>">
+  <label><%= t("price") + `(` + t("inCents") + `)`%></label>
   <div class="pricingRow">
-    <input type="number" placeholder="Quantity" name="qty[]" required/>
-    <input type="number" placeholder="Price" name="price[]" required/>
-    <button type="button" onclick="removeRow(this)">Remove</button>
+    <input type="number" placeholder="<%= t("quantity") %>" name="qty[]" required/>
+    <input type="number" placeholder="<%= t("price") %>" name="price[]" required/>
+    <button type="button" onclick="removeRow(this)"><%= t("remove") %></button>
   </div>
 </div>
-<button type="button" onclick="addRow()">Add Another Price Tier</button>
+<button type="button" onclick="addRow()"><%= t("addPriceTier") %></button>
 
 
 <div>
-  <label>Data Sheet</label>
+  <label><%= t("datasheet") %></label>
   <input type="file" name="dataSheet" class="filepond"/>
 </div> 
 

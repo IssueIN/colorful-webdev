@@ -1,11 +1,11 @@
 <table>
   <tr>
-    <th class="product-table__first-col">Part# & Mfr</th>
-    <th class="product-table__second-col">Quantity Avaliable</th>
-    <th>Price</th>
-    <th>Package Type</th>
-    <th>Packaging</th>
-    <th>Data Sheet</th>
+    <th class="product-table__first-col"><%= t("productsTableFirstCol") %></th>
+    <th class="product-table__second-col"><%= t("quantityAvaliable") %></th>
+    <th><%= t("price") %></th>
+    <th><%= t("packageType") %></th>
+    <th><%= t("packaging") %></th>
+    <th><%= t("datasheet") %></th>
   </tr>
   <% products.forEach(product => { %>
     <tr>
@@ -25,8 +25,8 @@
         <%= pricelevel.qty %> : <%= pricelevel.price %><br>
       <%}) %>
       </td>
-      <td><%= product.packageCase %></td>
-      <td><%= product.packaging %></td>
+      <td><%= product.packageCase[lang] %></td>
+      <td><%= product.packaging[lang] %></td>
       <td>place for datasheet</td>
     </tr>
   <% }) %>

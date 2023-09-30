@@ -5,6 +5,7 @@ const Manufacturer = require('../models/manufacturer')
 const imageMimeTypes = ['image/jpeg','image/png']
 const dataSheetType = ['application/pdf']
 const { checkAuthenticated } = require('../authMiddleware');
+const { packageCaseOptions, categoryOptions } = require('../models/_enumValues')
 
 // //All Products Route
 // router.get('/', async (req, res) => {
@@ -23,10 +24,11 @@ const { checkAuthenticated } = require('../authMiddleware');
 
 router.get('/', async (req, res) =>{
   try {
+    const lang = req.language.split('-')[0];
     let query = Product.find().populate('manufacturer');
 
     if(req.query.category) {
-      query = query.where('category', req.query.category);
+      query = query.where(`category.${lang}`, req.query.category);
     }
 
     if(req.query.manufacturer) {
@@ -37,6 +39,7 @@ router.get('/', async (req, res) =>{
     }
 
     const products = await query.exec();
+
     res.render('products/index', {
       products: products,
       category: req.query.category,
@@ -52,11 +55,12 @@ router.get('/', async (req, res) =>{
 //New Products Route
 router.get('/new', checkAuthenticated, async (req, res) => {
   try {
-    const packageCaseOptions = await Product.schema.path('packageCase').enumValues;
+    const lang = req.language.split('-')[0];
+    const packageCase = packageCaseOptions.map(value => value[lang])
     const product = new Product()
     res.render('products/new', {
       product: product,
-      packageCaseOptions: packageCaseOptions,
+      packageCaseOptions: packageCase,
     })
   } catch {
     res.redirect('/products')
@@ -69,14 +73,19 @@ router.post('/', checkAuthenticated, async (req, res) =>{
     return {qty: q, price: req.body['price[]'][index]}
   })
 
+  const description = bilingualObject(req.body['description[]'])
+  const packaging = bilingualObject(req.body['packaging[]'])
+  const selectedCategory = categoryOptions.find(category => category.en === req.body.category || category.zh === req.body.category);
+  const selectedPackageCase = packageCaseOptions.find(option => option.en === req.body.packageCase || option.zh === req.body.packageCase);
+
   const product = new Product({
     manufacturer: req.body.manufacturer,
     partNumber: req.body.partNumber,
-    description: req.body.description,
-    packaging: req.body.packaging,
-    packageCase: req.body.packageCase,
+    description: description,
+    packaging: packaging,
+    packageCase: selectedPackageCase,
     stock: req.body.stock,
-    category: req.body.category,
+    category: selectedCategory,
     price: pricingArray,
   })
   
@@ -87,8 +96,9 @@ router.post('/', checkAuthenticated, async (req, res) =>{
     const newProduct = await product.save()
     //res.redirect(`/products/${newProduct.id}`)
     res.redirect('/products')
-  } catch {
-    renderNewPage(res, product, true)
+  } catch (err) {
+    console.log(err)
+    renderNewPage(req, res, product, true)
   }
 })
 
@@ -117,16 +127,17 @@ router.get('/results', async (req, res) => {
 })
 
 
-async function renderNewPage(res, product, hasError = false) {
+async function renderNewPage(res, req, product, hasError = false) {
   try {
     const manufacturers = await Manufacturers.find({})
-    const packageCaseOptions = await Product.schema.path('packageCase').enumValues
-    const categoryOptions = await Product.schema.path('category').enumValues
+    const lang = req.language.split('-')[0];
+    const packageCase = packageCaseOptions.map(value => value[lang])
+    const category = categoryOptions.map(value => value[lang])
     const params = {
       manufacturers: manufacturers,
       product: product,
-      packageCaseOptions: packageCaseOptions,
-      categoryOptions: categoryOptions
+      packageCaseOptions: packageCase,
+      categoryOptions: category
     }
     if (hasError) {
       params.errorMessage = 'Error Creating Product'
@@ -144,6 +155,13 @@ function saveFile(product, fileEncoded, fileTypes, fieldName) {
       product[fieldName] = new Buffer.from(file.data, 'base64');
       const fieldType = fieldName + 'Type';
        product[fieldType] = file.type;
+  }
+}
+
+function bilingualObject(bilingualArray) {
+  return {
+    en: bilingualArray[0],
+    zh: bilingualArray[1]
   }
 }
 
